@@ -1,0 +1,82 @@
+// Book Allocation Problem using Binary Search
+#include <iostream>
+#include <vector>
+using namespace std;
+
+bool ispossibleSoln(vector<int> arr,int n,int m,int mid)
+{
+    int studentCount = 1;  // student count 
+    int pageSum = 0;       // sum of all pages
+    for(int i = 0; i < n; i++)
+    {
+        if(pageSum + arr[i] <= mid)  // condition
+        {
+            pageSum +=arr[i];        // storing sum of elements
+        }
+        else
+        {
+            studentCount++;  // increment student count 
+            if(studentCount > m || arr[i] > mid) // condition for false
+            {
+                return false;
+            }
+            pageSum += arr[i];  // storing for student++
+        }
+    }
+}
+
+
+int allocateBooks(vector<int> arr, int n , int m)
+{
+    // using binary search method 
+    int s,mid,e;
+    s = 0;
+    int sum = 0;   // taking sum of arrays for approach to put sum equals to end
+    for(int i = 0; i < n; i++)
+    {
+        sum += arr[i];
+    }
+
+    e = sum;  // end = sum or 0..........sum
+    mid = s + (e - s) / 2;
+    int ans = 0;
+    while(s<=e)
+    {
+        if(ispossibleSoln(arr,n,m,mid))  // function call if solution is [poosible]
+        {
+            ans = mid;   // then store it to another variable like this
+            e = mid -1;  // and shift end to mid -1 term
+        }
+        else
+        {
+            s = mid + 1; // if not possible solution shift start to mid + 1 term
+        }
+        mid = s + (e - s) / 2; // update mid
+    }
+
+}
+int main(){
+
+    // taking size of array from user
+    int n;
+    cin>>n;
+    
+    vector<int> arr; // vector array initializes
+    for(int i = 0; i < n; i++)
+    {
+        int num;
+        cin>>num;    // taking elements from users in vector array
+        arr.push_back(num);
+    }
+    for(int i = 0; i < n; i++)
+    {
+        cout<<arr[i]<<" ";  // displaying the array elements
+    }
+
+    int m;
+    cin>>m;  // taking no. of students
+
+    cout<<allocateBooks(arr,n,m); // calling function to print result or answer
+
+    return 0;
+}
