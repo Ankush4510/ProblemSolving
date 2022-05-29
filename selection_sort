@@ -1,0 +1,45 @@
+// selection sort
+#include <iostream>
+using namespace std;
+
+int selectionSort(int arr[],int n)
+{
+    for(int i = 0;i<n-1;i++)
+    {
+        int minIndex = i;
+        for(int j = i + 1;j < n; j++)
+        {
+            if(arr[j] < arr[minIndex])
+            {
+                minIndex = j;
+            }
+        }
+        swap(arr[minIndex],arr[i]);
+    }
+}
+
+int main(){
+
+
+    int size;
+    cin>>size;
+
+    int num[100];
+    for(int i=0;i<size;i++)
+    {
+        cin>>num[i];
+    }
+    for(int i = 0;i<size;i++)
+    {
+        cout<<num[i]<<" ";
+    }
+    cout<<endl;
+    selectionSort(num,size);
+    cout<<"Selection sort : ";
+    for(int i = 0;i<size;i++)
+    {
+        cout<<num[i]<<" ";
+    }
+    cout<<endl;
+    return 0;
+}
