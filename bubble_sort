@@ -1,0 +1,44 @@
+// bubble sort
+#include <iostream>
+using namespace std;
+
+void bubbleSort(int arr[],int n)
+{
+    for(int i = 1;i < n; i++)
+    {
+        for(int j = 0;j < n-i; j++)
+        {
+            if(arr[j + 1] < arr[j])
+            {
+                swap(arr[j],arr[j + 1]);
+            }
+        }
+    }
+}
+
+int main(){
+
+    int size;
+    cin>>size;
+
+    int num[100];
+    for(int i=0;i<size;i++)
+    {
+        cin>>num[i];
+    }
+    cout<<"Before Bubble Sort : ";
+    for(int i=0;i<size;i++)
+    {
+        cout<<num[i]<<" ";
+    }
+    cout<<endl;
+    bubbleSort(num,size);
+    cout<<"After Bubble Sort : ";
+    for(int i=0;i<size;i++)
+    {
+        cout<<num[i]<<" ";
+    }
+    cout<<endl;
+    
+    return 0;
+} 
